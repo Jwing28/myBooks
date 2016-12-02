@@ -1,0 +1,24 @@
+{
+  "name": "mybooks",
+  "version": "1.0.0",
+  "description": "bookfavorites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jwing28/myBooks.git"
+  },
+  "author": "jwing28",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jwing28/myBooks/issues"
+  },
+  "homepage": "https://github.com/Jwing28/myBooks#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.7.1",
+    "node": "0.0.0"
+  }
+}
