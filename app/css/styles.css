@@ -1,0 +1,27 @@
+.menu {
+  margin-top: 15px;
+}
+
+.searchBar {
+  float: right;
+  width: 85%;
+}
+
+.bookSearchSection {
+  background-color: lightblue;
+}
+
+button {
+  margin: 5px;
+}
+
+input {
+  width: 100%;
+  border-color: black;
+}
+
+.searchResults {
+  background-color: lightgray;
+  width: 100%;
+  height: 1000px;
+}
