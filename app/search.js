@@ -1,13 +1,21 @@
 var myApp = angular.module('myApp',[]);
 
-myApp.controller('myController', ['$scope', function($scope) {
+function myController ($scope) {
   $scope.test = 'hello';
+}
 
-}]);
+function searchHeaderController ($scope) {
+  this.search="type something"; 
+  $scope.hello = ""
 
-myApp.component('searchHeader', {
-  template:
-  `
+  this.test = function () {
+    console.log('ngclick test works');
+    console.log($scope.hello);
+  }
+}
+
+var searchHeaderComponent = {
+  template:`
     <div class="menu">
       <div class="btn-group" role="group">
         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn btn-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,15 +29,18 @@ myApp.component('searchHeader', {
         
       <div class="searchBar container-fluid">        
         <h2>MyBooks</h2>
-        <input />
-        <button class="btn btn-primary" type="submit">Find Books</button>
+        <input placeholder="{{$ctrl.search}}" ng-model="hello" />
+        <button ng-click="$ctrl.test()" class="btn btn-primary" type="submit">Find Books</button>
       </div>
-      <div class="searchResults"></div>
     </div>
-    {{ $ctrl.person }}
   `,
-  bindings: { name: '@'},
-  controller:function() {
-    this.person = "jon";
-  }
-});
+  bindings: { 
+    name: '@', 
+    search: '@'
+  },
+  controller: searchHeaderController
+}
+
+myApp.controller('myController', ['$scope', myController]);
+
+myApp.component('searchHeader', searchHeaderComponent);
