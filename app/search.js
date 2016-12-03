@@ -4,13 +4,24 @@ function myController ($scope) {
   $scope.test = 'hello';
 }
 
-function searchHeaderController ($scope) {
+function getSuccess(data) {
+  console.log('result data', data);
+}
+
+function getError(err) {
+  console.log('An error has occurred: ', err);
+}
+
+function searchHeaderController ($scope, $http) {
   this.search="type something"; 
   $scope.hello = ""
 
-  this.test = function () {
-    console.log('ngclick test works');
-    console.log($scope.hello);
+  this.getBooks = function () {
+    console.log($scope.hello);//use this in your get request...
+
+    //test get, in this case hardcoded
+    $http.get('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBvkaL_H4DJpMDXmkfHGAirW_KuVleKceg')
+      .then(getSuccess,getError);
   }
 }
 
@@ -30,7 +41,7 @@ var searchHeaderComponent = {
       <div class="searchBar container-fluid">        
         <h2>MyBooks</h2>
         <input placeholder="{{$ctrl.search}}" ng-model="hello" />
-        <button ng-click="$ctrl.test()" class="btn btn-primary" type="submit">Find Books</button>
+        <button ng-click="$ctrl.getBooks()" class="btn btn-primary" type="submit">Find Books</button>
       </div>
     </div>
   `,
@@ -38,9 +49,17 @@ var searchHeaderComponent = {
     name: '@', 
     search: '@'
   },
-  controller: searchHeaderController
+  controller: ['$scope', '$http', searchHeaderController]
 }
 
 myApp.controller('myController', ['$scope', myController]);
 
 myApp.component('searchHeader', searchHeaderComponent);
+
+
+
+
+
+
+
+
