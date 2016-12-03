@@ -19,59 +19,8 @@
     <!-- JS file -->
     <script src="./search.js"></script>
   </header>
-
   <body ng-controller="myController">
-    <abc name="Jon"></abc>
-    <div class="menu">
-      <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn btn-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </button>
-        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <a class="dropdown-item" href="#">Favorites List</a>
-          <a class="dropdown-item" href="#">Login/Logout</a>
-        </div>
-      </div>   
-
-      <div class="searchBar container-fluid">        
-        <h2>MyBooks</h2>
-        <input />
-        <button class="btn btn-primary" type="submit">Find Books</button>
-      </div>
-      <div class="searchResults"></div>
-    </div>
-
-<!-- save this for the cards when you get the data -->
-<!--     <div class="card card-outline-primary">  
-      <div class="card-deck-wrapper">
-        <div class="card-deck">
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/241x200" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/242x200" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="http://placehold.it/242x200" alt="Card image cap">
-            <div class="card-block">
-              <h4 class="card-title">Card title</h4>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
+    <search-Header></search-Header> 
+    <div class="searchResults"></div>
   </body>
 </html>
