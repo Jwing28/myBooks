@@ -1,33 +1,61 @@
 var myApp = angular.module('myApp',[]);
 
-function myController ($scope) {
-  $scope.test = 'hello';
-}
+var myController = function () {}
 
-function getSuccess(data) {
-  console.log('result data', data);
-}
-
-function getError(err) {
-  console.log('An error has occurred: ', err);
-}
-
-function searchHeaderController ($scope, $http) {
-  this.search="type something"; 
-  $scope.hello = ""
+//this should serve as parent component for renderBooks component
+var searchHeaderController  = function($scope, bookFactory) {
+  this.search="Find your books here:"; 
+  $scope.userSearch = ""
 
   this.getBooks = function () {
-    console.log($scope.hello);//use this in your get request...
-
-    //test get, in this case hardcoded
-    $http.get('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBvkaL_H4DJpMDXmkfHGAirW_KuVleKceg')
-      .then(getSuccess,getError);
+    console.log('user query', $scope.userSearch);
+    bookFactory.getBooks()
+      .success(function(data){
+        //need to pass this data to child component, renderBooks...
+        console.log('now our data is in searchHeaderController', data);
+      })
+      .error(function(err){
+        console.log('err infactory',err);
+      }); 
   }
 }
 
-var searchHeaderComponent = {
+//searchHeaderController - use a factory to perform a get request - done
+  //searchHeaderController will pass the data to child component renderBooks
+  //renderBooks will render the books.
+
+var myBookFactory = function ($http) {
+  var result = {};
+  var getBooks = function() {
+    return $http.get('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBvkaL_H4DJpMDXmkfHGAirW_KuVleKceg');           
+  }  
+
+  return {
+    getBooks: getBooks
+  }
+}  
+
+var renderBooksController = function () {
+
+}
+
+var renderBooksComponent = {
+  require: {
+    parent:'^searchHeader'
+  },
   template:`
-    <div class="menu">
+    <div>
+      Component! {{ $ctrl.state }}
+    </div>
+  `,
+  bindings:{},
+  controller:[renderBooksController]
+}
+
+var searchHeaderComponent = {
+  transclude: true,  
+  template:`
+    <div ng-transclude class="menu">
       <div class="btn-group" role="group">
         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn btn-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
@@ -40,7 +68,7 @@ var searchHeaderComponent = {
         
       <div class="searchBar container-fluid">        
         <h2>MyBooks</h2>
-        <input placeholder="{{$ctrl.search}}" ng-model="hello" />
+        <input placeholder="{{$ctrl.search}}" ng-model="userSearch" />
         <button ng-click="$ctrl.getBooks()" class="btn btn-primary" type="submit">Find Books</button>
       </div>
     </div>
@@ -49,12 +77,13 @@ var searchHeaderComponent = {
     name: '@', 
     search: '@'
   },
-  controller: ['$scope', '$http', searchHeaderController]
+  controller: ['$scope','bookFactory', searchHeaderController]
 }
 
-myApp.controller('myController', ['$scope', myController]);
-
+myApp.controller('myController', myController);
 myApp.component('searchHeader', searchHeaderComponent);
+myApp.factory('bookFactory', ['$http', myBookFactory]);
+myApp.component('renderBooks', renderBooksComponent);
 
 
 
