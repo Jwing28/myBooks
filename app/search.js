@@ -8,8 +8,7 @@ var searchHeaderController  = function($scope, bookFactory) {
   $scope.userSearch = ""
 
   this.getBooks = function () {
-    console.log('user query', $scope.userSearch);
-    bookFactory.getBooks()
+    bookFactory.getBooks( $scope.userSearch )
       .success(function(data){
         //need to pass this data to child component, renderBooks...
         console.log('now our data is in searchHeaderController', data);
@@ -26,8 +25,8 @@ var searchHeaderController  = function($scope, bookFactory) {
 
 var myBookFactory = function ($http) {
   var result = {};
-  var getBooks = function() {
-    return $http.get('https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyBvkaL_H4DJpMDXmkfHGAirW_KuVleKceg');           
+  var getBooks = function(userInput) {
+    return $http.get('https://www.googleapis.com/books/v1/volumes?q=' + userInput + ':keyes&key=AIzaSyBvkaL_H4DJpMDXmkfHGAirW_KuVleKceg');           
   }  
 
   return {
