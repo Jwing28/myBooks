@@ -16,10 +16,6 @@ var searchHeaderController  = function($rootScope, bookFactory) {
   }
 }
 
-//searchHeaderController - use a factory to perform a get request - done
-  //searchHeaderController will pass the data to child component renderBooks-done
-  //renderBooks will render the books.
-
 var myBookFactory = function ($http) {
   var returnBooks = function(userInput) {
     return $http.get('https://www.googleapis.com/books/v1/volumes?q=' + userInput + ':keyes&key=AIzaSyBvkaL_H4DJpMDXmkfHGAirW_KuVleKceg');           
@@ -30,19 +26,39 @@ var myBookFactory = function ($http) {
   }
 }  
 
-var renderBooksController = function ($rootScope) {
+var renderBooksController = function ($rootScope, $scope) {
+  //this function isn't run when ng-repeat is up
+  $scope.list = [];
+
   $rootScope.$watch('result["items"]', function (newValue, oldValue, scope) {
     if(newValue.length){
-      console.log('inside renderBooks', newValue);
+      $scope.list = newValue;
+      console.log('scope list', $scope.list);
     }    
   });
 }
-
+  
 var renderBooksComponent = {
   template:`
-    <div></div>
+    <div class="card-deck-wrapper">
+      <div class="card-deck">
+        <div ng-repeat="book in list">  
+          <div class="card" ng-style="{float:'left', width:'30%', margin: '5px', height:'35em', 'background-color':'#fcf1d4'}">
+            <div ng-style="{height: '100%', width:'100%' }">
+              <img class="card-img-top" ng-src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Title: {{ book.volumeInfo.title }}</h4>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text">Published: {{ book.volumeInfo.publishedDate }}</p>
+                <a href="#" class="btn btn-primary">Add to Favorites</a>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>       
+    </div>   
   `,
-  controller: ['$rootScope', renderBooksController]
+  controller: ['$rootScope', '$scope', renderBooksController]
 }
 
 var searchHeaderComponent = {
@@ -63,7 +79,8 @@ var searchHeaderComponent = {
         <h2>MyBooks</h2>
         <input ng-model="$ctrl.search" />
         <button ng-click="$ctrl.getBooks()" class="btn btn-primary" type="submit">Find Books</button>
-        <render-Books></render-Books>
+        <hr>
+      <render-Books></render-Books>
       </div>      
     </div>
   `,
