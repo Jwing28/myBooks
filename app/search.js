@@ -71,7 +71,7 @@ var searchHeaderComponent = {
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
           <a class="dropdown-item" href="#">Favorites List</a>
-          <a class="dropdown-item" href="#">Login/Logout</a>
+          <a class="dropdown-item" href="./login.html">Login/Logout</a>
         </div>
       </div>   
         
