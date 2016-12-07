@@ -16,10 +16,27 @@
     <!-- Angular 1.5.6 -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js">    
     </script>
+
+    <!-- firebase  -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-auth.js"></script>    
   </header>
   <body ng-controller="myLoginCtrl">
     <user-Login></user-Login>
 
+    <!-- firebase init -->
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDXa8vdpA9EjmD17JPHKA0zm90rMa0Y2YQ",
+        authDomain: "mybooks-2e524.firebaseapp.com",
+        databaseURL: "https://mybooks-2e524.firebaseio.com",
+        storageBucket: "mybooks-2e524.appspot.com",
+        messagingSenderId: "992893521596"
+      };
+      firebase.initializeApp(config);
+    </script>    
     <!-- JS file -->
     <script src="./login.js"></script>    
   </body>
