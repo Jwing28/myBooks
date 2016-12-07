@@ -65,7 +65,7 @@ var searchHeaderComponent = {
   transclude: true,  
   template:`
     <div ng-transclude class="menu">
-      <div class="btn-group" role="group">
+      <div class="btn-group" role="group" ng-style="{display:'inline'}">
         <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle btn btn-info" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
         </button>
@@ -75,7 +75,7 @@ var searchHeaderComponent = {
         </div>
       </div>   
         
-      <div class="container-fluid">        
+      <div class="container-fluid" ng-style="{width:'600px', marginLeft:'30%'}">        
         <h2>MyBooks</h2>
         <input ng-model="$ctrl.search" />
         <button ng-click="$ctrl.getBooks()" class="btn btn-primary" type="submit">Find Books</button>

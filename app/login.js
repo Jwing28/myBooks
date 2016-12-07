@@ -51,7 +51,7 @@ var loginComponent = {
     <h2 ng-style="{textAlign:'center', marginTop:'20px'}">New User or Existing User</h2>
     <div class="bg-danger text-white" ng-bind="signup.error"></div>
     <span>
-      <form ng-style="{position:'absolute', top:'30%', left:'20%', 'background-color':'#fcf1d4', padding:'10px'}">
+      <form action="./search.html" ng-style="{position:'absolute', top:'30%', left:'20%', 'background-color':'#fcf1d4', padding:'10px'}">
         <h3>MyBooks: Sign-Up</h3>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
@@ -67,7 +67,7 @@ var loginComponent = {
     </span>
     <span>
       <div class="bg-danger text-white" ng-bind="login.error"></div>
-      <form ng-style="{position:'absolute', top:'30%', left:'60%', 'background-color':'#fcf1d4', padding:'10px'}">
+      <form action="./search.html" ng-style="{position:'absolute', top:'30%', left:'60%', 'background-color':'#fcf1d4', padding:'10px'}">
         <h3>MyBooks: Login</h3>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
