@@ -1,9 +1,12 @@
 var myApp = angular.module('myApp',[]);
 var myController = function () {}
 
-var searchHeaderController  = function($rootScope, bookFactory) {
+//console.log( window.sessionStorage.getItem('user') ) works
+
+var searchHeaderController  = function($rootScope,$scope, bookFactory) {
   this.search=""; 
   $rootScope.result = {items: []};
+  $scope.currentUser = window.sessionStorage.getItem('user');
 
   this.getBooks = function () {
     bookFactory.returnBooks( this.search )
@@ -74,6 +77,8 @@ var searchHeaderComponent = {
           <a class="dropdown-item" href="./login.html">Login/Logout</a>
         </div>
       </div>   
+
+      <div ng-bind="'Hi, ' + currentUser + '!'" ng-style="{float:right}"></div>        
         
       <div class="container-fluid" ng-style="{width:'600px', marginLeft:'30%'}">        
         <h2>MyBooks</h2>
@@ -81,13 +86,13 @@ var searchHeaderComponent = {
         <button ng-click="$ctrl.getBooks()" class="btn btn-primary" type="submit">Find Books</button>
         <hr>
       <render-Books></render-Books>
-      </div>      
+      </div>    
     </div>
   `,
   bindings: { 
     search: '@', //user's input in input box
   },
-  controller: ['$rootScope','bookFactory', searchHeaderController]
+  controller: ['$rootScope','$scope', 'bookFactory', searchHeaderController]
 }
 
 myApp.controller('myController', myController);
