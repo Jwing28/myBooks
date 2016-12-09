@@ -1,6 +1,6 @@
 var myLogin = angular.module('myLogin',[]);
-
 var loginController = function ($scope) {}
+
 
 var login = function ($scope) {
   //all of these work
@@ -20,7 +20,7 @@ var login = function ($scope) {
   this.login = function () {
     //could have check on inputs here..
     window.sessionStorage.setItem('user', this.emailLogin);
-    
+
     firebase.auth().signInWithEmailAndPassword(this.emailLogin, this.passwordLogin).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
