@@ -22,10 +22,6 @@
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-auth.js"></script>  
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>  
-  </header>
-  <body ng-controller="myLoginCtrl">
-    <user-Login></user-Login>
-
     <!-- firebase init -->
     <script>
       // Initialize Firebase
@@ -37,7 +33,12 @@
         messagingSenderId: "992893521596"
       };
       firebase.initializeApp(config);
-    </script>    
+    </script>     
+  </header>
+  <body ng-controller="myLoginCtrl">
+    <user-Login></user-Login>
+
+   
     <!-- JS file -->
     <script src="./login.js"></script>    
   </body>

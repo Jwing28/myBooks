@@ -6,11 +6,14 @@ console.log(database);
 
 // write to firebase DB
 var writeUserData = function(userId, bookObj, bookIndex) {
-  firebase.database().ref('users/' + userId).set({
+  firebase.database().ref('users/' + userId).push({
     title: bookObj.volumeInfo.title,
     count: bookIndex,
     published: bookObj.volumeInfo.publishedDate,
     book_picture : bookObj.volumeInfo.imageLinks.smallThumbnail
+  },
+  function(reference){
+    console.log("Book Added!");
   });
 }  
 
@@ -50,6 +53,8 @@ var renderBooksController = function ($rootScope, $scope) {
     if (user != null) {
       writeUserData(user.uid, $rootScope.result.items[bookIndex], bookIndex);
       console.log('added book!');
+    }else{
+      console.error('user is null');
     }
   }
 
@@ -95,7 +100,7 @@ var searchHeaderComponent = {
           Dropdown
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <a class="dropdown-item" href="#">Favorites List</a>
+          <a class="dropdown-item" href="./favorites.html">Favorites List</a>
           <a class="dropdown-item" href="./login.html">Login/Logout</a>
         </div>
       </div>   
