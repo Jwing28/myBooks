@@ -13,17 +13,22 @@ var renderFavoritesController = function ($scope) {
         bkArr.push(bkObj[key]);
       }
 
-      $scope.$apply(function(){
+      $scope.$apply(function() {
         $scope.bookList = bkArr;
-      })
+      });
     });    
-  },1000);
+  },500);
 
-  //remove a favorited book from the list should setoff above
+  //remove a favorited book from the list should setoff above..will need to fix.
   this.removeFavorite = function(bookTitle) {    
-    var user = firebase.auth().currentUser;    
-    firebase.database().ref('users/' + user.uid).orderByChild('title').equalTo(bookTitle).remove();
-    console.log(bookTitle + ' removed!');
+    var ref = firebase.database().ref('images');
+    ref.orderByChild('id_logement').equalTo(key).once("value", function(snapshot){
+         var updates = {};
+         snapshot.forEach(function(child){
+            updates[child.key] = null;
+         });
+         ref.update(updates);
+    });    
   }
 }
 
@@ -51,9 +56,6 @@ var renderFavoritesComponent = {
 favorites.controller('myFavoritesCtrl',favoritesCtrl);
 favorites.component('test',renderFavoritesComponent);
 
-// favorites.component('test',{
-//   template:'<div>this works</div>',
-//   controller: function () {}
-// });
+
 
 
