@@ -90,8 +90,17 @@ var loginComponent = {
   controller: ['$scope', login]
 }
 
+var introTest = function() {
+  return {
+    getGreeting: function (name) {
+      return "Hello " + name;
+    }
+  }
+}
+
 myLogin.controller('myLoginCtrl',loginController);
 myLogin.component('userLogin', loginComponent);
+myLogin.factory('greeter', introTest)
 
 
 
