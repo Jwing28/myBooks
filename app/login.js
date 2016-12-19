@@ -60,7 +60,7 @@ var loginComponent = {
         <h3>MyBooks: Sign-Up</h3>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input ng-model="$ctrl.emailSignup" ype="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input ng-model="$ctrl.emailSignup" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
@@ -76,7 +76,7 @@ var loginComponent = {
         <h3>MyBooks: Login</h3>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input ng-model="$ctrl.emailLogin" ype="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input ng-model="$ctrl.emailLogin" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
