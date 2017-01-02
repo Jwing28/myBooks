@@ -50,12 +50,15 @@ var renderBooksController = function ($rootScope, $scope) {
   this.addToFavor = function (bookIndex) {
     //this is where you store the selection for the user in the db
     var user = firebase.auth().currentUser;
-    if (user != null) {
-      writeUserData(user.uid, $rootScope.result.items[bookIndex], bookIndex);
-      console.log('added book!');
-    }else{
-      console.error('user is null');
-    }
+
+    console.log(user);
+
+    // if (user != null) {
+    //   writeUserData(user.uid, $rootScope.result.items[bookIndex], bookIndex);
+    //   console.log('added book!');
+    // }else{
+    //   console.error('user is null');
+    // }
   }
 
   $rootScope.$watch('result["items"]', function (newValue, oldValue, scope) {
