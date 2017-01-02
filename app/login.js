@@ -1,7 +1,6 @@
 var myLogin = angular.module('myLogin',[]);
 var loginController = function ($scope) {}
 
-
 var login = function ($scope) {
   //all of these work
   this.emailSignup = "";
@@ -13,16 +12,13 @@ var login = function ($scope) {
 
   //if user successfully signs in or logs in, 
   //send the email to search.js so you can render the user's email there
-    //result: 'User: kat@gmail.com'
-
-    //if there is an error (wrong psw or email) then error notice will be thrown
+    //result: 'User: name@email.com'
 
   this.login = function () {
-    //could have check on inputs here..
+    //persist emailLogin for current user's session
     window.sessionStorage.setItem('user', this.emailLogin);
 
     firebase.auth().signInWithEmailAndPassword(this.emailLogin, this.passwordLogin).catch(function(error) {
-      // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
 
@@ -35,10 +31,8 @@ var login = function ($scope) {
 
   this.signUp = function () {
     //could have check on inputs here..
-    console.log('check signup', this.emailSignup + " " + this.passwordSignup)
     // firebase auth
     firebase.auth().createUserWithEmailAndPassword(this.emailSignup, this.passwordSignup).catch(function(error) {
-      // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       
@@ -90,17 +84,9 @@ var loginComponent = {
   controller: ['$scope', login]
 }
 
-var introTest = function() {
-  return {
-    getGreeting: function (name) {
-      return "Hello " + name;
-    }
-  }
-}
-
 myLogin.controller('myLoginCtrl',loginController);
 myLogin.component('userLogin', loginComponent);
-myLogin.factory('greeter', introTest)
+
 
 
 
