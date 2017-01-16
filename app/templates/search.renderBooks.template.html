@@ -1,0 +1,18 @@
+<div class="card-deck-wrapper">
+  <div class="card-deck">
+    <div ng-repeat="book in list track by $index">  
+      <div class="card" ng-style="{float:'left', width:'30%', margin: '5px', height:'35em', 'background-color':'#fcf1d4'}">
+        <div ng-style="{height: '100%', width:'100%' }">
+          <img class="card-img-top" ng-src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Title: {{ book.volumeInfo.title }}</h4>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text">Published: {{ book.volumeInfo.publishedDate }}</p>
+            <a href="#" ng-click="$ctrl.addToFavor($index)" class="btn btn-primary">Add to Favorites</a> 
+            <p>Count:{{ $index }}</p>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>       
+</div>   
